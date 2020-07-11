@@ -21,8 +21,8 @@ export default createGlobalStyle`
       margin: 0;
       height: 100%;
       line-height: 2;
-      background: ${({ theme: { colors } }) => colors.text};
-      color: ${({ theme: { colors } }) => colors.primary};
+      background: ${({ theme: { colors } }) => colors.mainBg};
+      color: ${({ theme: { colors } }) => colors.text};
     }
     ul{
       list-style:none;
