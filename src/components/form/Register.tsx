@@ -3,6 +3,8 @@ import { Form, Label, Input, Select } from '../styles/FormElements';
 import { Button } from '../styles/Buttons';
 import { ComponentWrapper } from '../styles/Wrappers';
 import useForm from '../../hooks/useForm';
+import useError from '../../hooks/useError';
+import registerErrors from '../../utils/registerErrors';
 
 interface Props {}
 
@@ -14,10 +16,11 @@ const Register: React.FC<Props> = () => {
     password2: '',
   });
 
-  let testErrors = {};
+  const errors = registerErrors(registerData);
+
   const { formData, formErrors, handleChange, handleSubmit } = useForm(
     registerData,
-    testErrors,
+    errors,
   );
 
   return (
