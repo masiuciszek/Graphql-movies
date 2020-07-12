@@ -44,3 +44,8 @@ export const Input = styled.input`
 `;
 
 export const Select = styled.select``;
+
+export const ErrorMsg = styled.span`
+  color: ${(props) => props.theme.colors.danger};
+  font-weight: 700;
+`;
