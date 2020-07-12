@@ -33,12 +33,6 @@ const Register: React.FC<Props> = () => {
   // React.Dispatch<React.SetStateAction<RegisterData>>
   function cb() {
     console.log('Resisted!!!');
-    cleanForm({
-      name: '',
-      email: '',
-      password: '',
-      password2: '',
-    });
   }
 
   return (

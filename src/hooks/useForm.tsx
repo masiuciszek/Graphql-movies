@@ -33,16 +33,10 @@ function useForm(
     console.log(formErrors);
     console.log(isSubmitting);
 
-    if (isSubmitting && Object.values(formErrors).length === 0) {
+    if (isSubmitting && Object.keys(formErrors).length === 0) {
       handle();
     }
-    if (Object.values(formErrors).length < 0) {
-      console.log('yaaa');
-      Object.values(formErrors);
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [formErrors]);
+  }, [formErrors, handle, isSubmitting]);
 
   return {
     formData,
