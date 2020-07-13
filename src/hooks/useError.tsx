@@ -1,18 +1,20 @@
 import * as React from 'react';
 
 // Form values
-export function useError<T, K extends keyof T, E>(
-  values: T,
-  key: K,
-  initialErrors: E,
+export function useError(
+  values: FormValuesType,
+  initialErrors: ValidationType,
 ) {
-  const [errorsMessage, setErrorsMessage] = React.useState<E>(initialErrors);
+  const [state, setState] = React.useState<ValidationType>(initialErrors);
 
-  if (!values[key]) {
-    setErrorsMessage({ ...errorsMessage, msg: 'Please fill in the value' });
+  if (!values['name']) {
+    setState({ ...state, nameError: 'please fill in the name' });
+  }
+  if (!values['email']) {
+    setState({ ...state, emailError: 'please fill your email' });
   }
 
-  return { errorsMessage };
+  return { state };
 }
 
 export default useError;

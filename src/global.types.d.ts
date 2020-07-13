@@ -21,6 +21,7 @@ interface RegisterErrors {
 }
 
 type RegisterValidationType = RegisterErrors;
+type ValidationType = RegisterErrors;
 type FormValuesType = RegisterData;
 
 type FormValidationReturnType = (
