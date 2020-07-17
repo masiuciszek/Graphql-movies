@@ -1,12 +1,12 @@
 import * as React from 'react';
-import Register from '../components/form/Register';
+import Game from '../components/game';
 
 interface Props {}
 
 const Home: React.FC<Props> = () => {
   return (
     <>
-      <Register />
+      <Game />
     </>
   );
 };

@@ -19,7 +19,7 @@ export const mainTheme: DefaultTheme = {
     h5: '22px',
     p: '18px',
     a: '16px',
-    maxWidth: '1100px',
+    maxWidth: '1200px',
   },
   shadow: {
     elevations: [

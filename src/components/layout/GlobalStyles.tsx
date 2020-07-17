@@ -19,10 +19,7 @@ export default createGlobalStyle`
       font-family: 'Montserrat', sans-serif;
       padding: 0;
       margin: 0;
-      height: 100%;
       line-height: 2;
-      background: ${({ theme: { colors } }) => colors.mainBg};
-      color: ${({ theme: { colors } }) => colors.text};
     }
     ul{
       list-style:none;

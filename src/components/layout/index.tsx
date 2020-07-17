@@ -9,12 +9,10 @@ interface Props {
 }
 
 export const Page = styled.div`
-  max-width: ${(props) => props.theme.size.maxWidth};
-  width: 100%;
-  height: 100%;
   margin: 0 auto;
-  border: 2px solid green;
   ${handleFlex('column', 'center', 'center')}
+  background: ${({ theme: { colors } }) => colors.mainBg};
+  color: ${({ theme: { colors } }) => colors.text};
 `;
 
 const Main = styled.main`
@@ -22,6 +20,7 @@ const Main = styled.main`
   height: 100%;
   width: 100%;
   border: 2px solid red;
+  max-width: ${(props) => props.theme.size.maxWidth};
 `;
 
 const Layout: React.FC<Props> = ({ children }) => {
