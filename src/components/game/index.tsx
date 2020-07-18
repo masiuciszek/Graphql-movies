@@ -14,29 +14,39 @@ import WrongWords from '../words/WrongWords';
 interface Props {}
 
 const Game: React.FC<Props> = () => {
+  const { gameWord, wrongLetters, correctLetters } = useWordState();
   const dispatch = useWordDispatch();
 
-  // React.useEffect(() => {
-  //   let word = startGame();
-  //   dispatch({ type: 'SET_GAME_WORD', payload: word });
-  // }, [dispatch]);
+  const keyBoardListener = React.useCallback(() => {
+    console.log('render');
+    window.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.keyCode >= 65 && e.keyCode < 90) {
+        let letter = e.key;
+        if (gameWord.includes(letter)) {
+          dispatch({ type: 'SET_CORRECT_WORD', payload: letter });
+        }
+      }
+    });
+  }, [dispatch, gameWord]);
 
-  const startGame = (): string => {
-    return randomValue(wordsXs);
+  const startGame = (): void => {
+    let wordForTheGame = randomValue(wordsXs);
+    dispatch({ type: 'SET_GAME_WORD', payload: wordForTheGame });
   };
+
+  React.useEffect(() => {
+    keyBoardListener();
+  }, [correctLetters, keyBoardListener, wrongLetters]);
+
+  console.log(gameWord);
 
   return (
     <GameStyles>
       <HangMan />
-      <Word />
-      <UsedLetters />
-      <WrongWords />
-      <Button
-        onClick={() =>
-          dispatch({ type: 'SET_GAME_WORD', payload: startGame() })
-        }>
-        Start Game
-      </Button>
+      <UsedLetters correctLetters={correctLetters} />
+      <WrongWords wrongLetters={wrongLetters} />
+      <Word gameWord={gameWord} correctLetters={correctLetters} />
+      <Button onClick={startGame}>Start Game</Button>
     </GameStyles>
   );
 };

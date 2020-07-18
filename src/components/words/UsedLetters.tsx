@@ -2,10 +2,11 @@ import * as React from 'react';
 import { useWordState } from '../../context/word.context/Word.provider';
 import { UsedLettersContainer, WordLetter } from './Words.styles';
 
-interface Props {}
+interface Props {
+  correctLetters: string[];
+}
 
-const UsedLetters: React.FC<Props> = () => {
-  const { correctLetters } = useWordState();
+const UsedLetters: React.FC<Props> = ({ correctLetters }) => {
   return (
     <UsedLettersContainer>
       {correctLetters.length > 0 && <h4>Used Letters</h4>}

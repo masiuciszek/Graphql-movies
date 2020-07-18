@@ -2,20 +2,23 @@ import * as React from 'react';
 import { useWordState } from '../../context/word.context/Word.provider';
 import { WordContainer, WordLetter } from './Words.styles';
 
-interface Props {}
+interface Props {
+  gameWord: string;
+  correctLetters: string[];
+}
 
-const Word: React.FC<Props> = () => {
-  const { gameWord, correctLetters } = useWordState();
-
+const Word: React.FC<Props> = ({ gameWord, correctLetters }) => {
   return (
     <WordContainer>
-      {correctLetters.map((letter, i) =>
-        gameWord.includes(letter) ? (
-          <WordLetter key={i}>{letter}</WordLetter>
-        ) : (
-          <WordLetter key={i}></WordLetter>
-        ),
-      )}
+      {gameWord
+        .split('')
+        .map((letter, i) =>
+          correctLetters.includes(letter, i) ? (
+            <WordLetter key={i}>{letter}</WordLetter>
+          ) : (
+            <WordLetter></WordLetter>
+          ),
+        )}
     </WordContainer>
   );
 };

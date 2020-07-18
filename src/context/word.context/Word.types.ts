@@ -8,8 +8,8 @@ export type State = {
 
 export const initialState: State = {
   gameWord: '',
-  correctLetters: ['j', 'a', 'v', 'a', 's'],
-  wrongLetters: ['r', 'z', 'v'],
+  correctLetters: [],
+  wrongLetters: [],
 };
 
 // Start the game with setting the first random word to guess
@@ -29,5 +29,12 @@ interface SetWrongWord {
   type: 'SET_WRONG_WORD';
   payload: string;
 }
+interface ClearGameWord {
+  type: 'CLEAR_GAME_WORD';
+}
 
-export type Action = SetCorrectWord | SetWrongWord | SetGameWord;
+export type Action =
+  | SetCorrectWord
+  | SetWrongWord
+  | SetGameWord
+  | ClearGameWord;

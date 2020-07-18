@@ -42,7 +42,7 @@ export const WordLetter = styled.span`
 
 export const UsedLettersContainer = styled(WordContainer)`
   position: absolute;
-  top: 10%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 30vmax;

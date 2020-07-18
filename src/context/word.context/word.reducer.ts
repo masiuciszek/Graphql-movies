@@ -11,13 +11,19 @@ export default (state: State = initialState, action: Action) => {
     case 'SET_CORRECT_WORD':
       return {
         ...state,
-        correctLetters: [...state.correctLetters, action.payload],
+        correctLetters: [action.payload, ...state.correctLetters],
       };
 
     case 'SET_WRONG_WORD':
       return {
         ...state,
         wrongLetters: [...state.wrongLetters, action.payload],
+      };
+
+    case 'CLEAR_GAME_WORD':
+      return {
+        ...state,
+        gameWord: '',
       };
 
     default: {
