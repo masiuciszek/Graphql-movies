@@ -5,8 +5,10 @@ import {
 } from '../../context/word.context/Word.provider';
 import { randomValue, wordsXs } from '../../utils/helpers';
 import HangMan from '../hangman';
+import { Button } from '../styles/Buttons';
 import { GameStyles } from '../styles/Wrappers';
-import CorrectWords from '../words/CorrectWords';
+import UsedLetters from '../words/UsedLetters';
+import Word from '../words/Word';
 import WrongWords from '../words/WrongWords';
 
 interface Props {}
@@ -14,16 +16,27 @@ interface Props {}
 const Game: React.FC<Props> = () => {
   const dispatch = useWordDispatch();
 
-  React.useEffect(() => {
-    let word = randomValue(wordsXs);
-    dispatch({ type: 'SET_GAME_WORD', payload: word });
-  }, [dispatch]);
+  // React.useEffect(() => {
+  //   let word = startGame();
+  //   dispatch({ type: 'SET_GAME_WORD', payload: word });
+  // }, [dispatch]);
+
+  const startGame = (): string => {
+    return randomValue(wordsXs);
+  };
 
   return (
     <GameStyles>
       <HangMan />
-      <CorrectWords />
+      <Word />
+      <UsedLetters />
       <WrongWords />
+      <Button
+        onClick={() =>
+          dispatch({ type: 'SET_GAME_WORD', payload: startGame() })
+        }>
+        Start Game
+      </Button>
     </GameStyles>
   );
 };

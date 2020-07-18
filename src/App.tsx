@@ -1,13 +1,13 @@
 import React from 'react';
-import Home from './pages/Home';
 import Layout from './components/layout';
 import { WordProvider } from './context/word.context/Word.provider';
+import Game from './components/game';
 
 function App() {
   return (
     <Layout>
       <WordProvider>
-        <Home />
+        <Game />
       </WordProvider>
     </Layout>
   );

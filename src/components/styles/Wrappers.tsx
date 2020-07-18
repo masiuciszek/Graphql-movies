@@ -6,9 +6,10 @@ export const ComponentWrapper = styled.div`
 `;
 
 export const GameStyles = styled.div`
-  width: 100%;
-  border: 3px solid green;
-  margin: 12rem auto;
-  position: relative;
+  /* width: 100vw; */
   height: 100%;
+  border: 3px solid green;
+  margin: 2rem auto;
+  position: relative;
+  padding: 3rem 1rem;
 `;

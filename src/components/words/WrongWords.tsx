@@ -1,13 +1,18 @@
 import * as React from 'react';
-import { WrongWordContainer } from './Words.styles';
+import { useWordState } from '../../context/word.context/Word.provider';
+import { WordLetter, WrongWordContainer } from './Words.styles';
 
 interface Props {}
 
 const WrongWords: React.FC<Props> = () => {
+  const { wrongLetters } = useWordState();
   return (
     <WrongWordContainer>
-      {' '}
-      <h1>Wrong-words </h1>{' '}
+      {wrongLetters.length > 0 && <h4>Wrong-words </h4>}
+      {wrongLetters.length > 0 &&
+        wrongLetters.map((letter, i) => (
+          <WordLetter key={i}>{letter}</WordLetter>
+        ))}
     </WrongWordContainer>
   );
 };

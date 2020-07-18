@@ -9,17 +9,14 @@ interface Props {
 }
 
 export const Page = styled.div`
-  margin: 0 auto;
-  ${handleFlex('column', 'center', 'center')}
   background: ${({ theme: { colors } }) => colors.mainBg};
   color: ${({ theme: { colors } }) => colors.text};
 `;
 
 const Main = styled.main`
   flex-grow: 1 auto;
-  height: 100%;
-  width: 100%;
   border: 2px solid red;
+  margin: 0 auto;
   max-width: ${(props) => props.theme.size.maxWidth};
 `;
 

@@ -2,14 +2,14 @@ export type Dispatch = (action: Action) => void;
 
 export type State = {
   gameWord: string;
-  correctWords: string[];
-  wrongWords: string[];
+  correctLetters: string[];
+  wrongLetters: string[];
 };
 
 export const initialState: State = {
   gameWord: '',
-  correctWords: [],
-  wrongWords: [],
+  correctLetters: ['j', 'a', 'v', 'a', 's'],
+  wrongLetters: ['r', 'z', 'v'],
 };
 
 // Start the game with setting the first random word to guess
