@@ -2,12 +2,11 @@ import * as React from 'react';
 import { useWordState } from '../../context/word.context/Word.provider';
 import { WordContainer, WordLetter } from './Words.styles';
 
-interface Props {
-  gameWord: string;
-  correctLetters: string[];
-}
+interface Props {}
 
-const Word: React.FC<Props> = ({ gameWord, correctLetters }) => {
+const Word: React.FC<Props> = () => {
+  const { gameWord, correctLetters } = useWordState();
+
   return (
     <WordContainer>
       {gameWord

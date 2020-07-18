@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react';
 import {
   useWordDispatch,
@@ -14,23 +15,15 @@ import WrongWords from '../words/WrongWords';
 
 interface Props {}
 
-const Game: React.FC<Props> = () => {
+const GameTwo: React.FC<Props> = () => {
   const { gameWord, wrongLetters, correctLetters } = useWordState();
 
   const dispatch = useWordDispatch();
 
-  let uniqueList = correctLetters.filter(
-    (item, index) => correctLetters.indexOf(item) === index,
-  );
-
-  const checkWinner = React.useCallback(() => {
-    if (uniqueList.length > 0 && uniqueList.join('') === gameWord) {
-      dispatch({ type: 'SET_WINNER' });
-      console.log('apapap');
-    }
-  }, [uniqueList, gameWord, dispatch]);
-
-  const keyBoardListener = React.useCallback(() => {
+  const keyBoardListener = () => {
+    let uniqueList = correctLetters.filter(
+      (item, index) => correctLetters.indexOf(item) === index,
+    );
     window.addEventListener('keydown', (e: KeyboardEvent) => {
       if (e.keyCode >= 65 && e.keyCode <= 90) {
         let letter = e.key;
@@ -41,19 +34,14 @@ const Game: React.FC<Props> = () => {
         }
       }
     });
-    checkWinner();
-  }, [checkWinner, correctLetters, dispatch, gameWord]);
+  };
 
   const startGame = (): void => {
     let wordForTheGame = randomValue(wordsXs);
     dispatch({ type: 'SET_GAME_WORD', payload: wordForTheGame });
   };
 
-  React.useEffect(() => {
-    keyBoardListener();
-  }, [checkWinner, correctLetters, keyBoardListener, wrongLetters]);
-
-  console.log(gameWord);
+  keyBoardListener();
 
   return (
     <GameStyles>
@@ -61,9 +49,9 @@ const Game: React.FC<Props> = () => {
       <UsedLetters />
       <WrongWords />
       <Word />
-      <Button onClick={startGame}>Start Game</Button>
+      <Button onClick={startGame}>Start GameTwo</Button>
       <Modal />
     </GameStyles>
   );
 };
-export default Game;
+export default GameTwo;
