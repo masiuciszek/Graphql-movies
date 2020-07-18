@@ -16,7 +16,7 @@ const Word: React.FC<Props> = ({ gameWord, correctLetters }) => {
           correctLetters.includes(letter, i) ? (
             <WordLetter key={i}>{letter}</WordLetter>
           ) : (
-            <WordLetter></WordLetter>
+            <WordLetter key={i}></WordLetter>
           ),
         )}
     </WordContainer>
