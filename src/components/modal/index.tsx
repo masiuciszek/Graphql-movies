@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useSpring } from 'react-spring';
-import styled from 'styled-components';
+
 import {
   useWordDispatch,
   useWordState,
@@ -11,22 +11,35 @@ import { ModalStyles, ModalBody } from './Modal.styles';
 interface Props {}
 
 const Modal: React.FC<Props> = () => {
-  const { isWinner } = useWordState();
+  const { isWinner, isLoser } = useWordState();
   const dispatch = useWordDispatch();
-  const { x, opacity } = useSpring({
-    x: isWinner ? 0 : 100,
-    opacity: isWinner ? 1 : 0,
+
+  const { y, x } = useSpring({
+    y: isWinner ? 0 : 100,
+    x: isLoser ? 0 : 100,
   });
 
   return (
     <ModalStyles
       style={{
-        transform: x.interpolate((x) => `translate3d(0,${x * -1}%,0)`),
-        opacity,
+        transform: isWinner
+          ? y.interpolate((y) => `translate3d(0,${y * -1}%,0)`)
+          : x.interpolate((x) => `translate3d(0,${x * -1}%,0)`),
       }}>
       <ModalBody>
-        <h1> Winner </h1>
-        <h3>You win the game</h3>
+        {isWinner && (
+          <>
+            <h1> Winner </h1>
+            <h3>You win the game</h3>
+          </>
+        )}
+
+        {isLoser && (
+          <>
+            <h1> Looser </h1>
+            <h3>You loose the game</h3>
+          </>
+        )}
         <Button
           onClick={() => {
             dispatch({ type: 'CLEAR_GAME_WORD' });

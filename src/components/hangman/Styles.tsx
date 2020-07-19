@@ -8,8 +8,8 @@ export const HangmanStyles = styled.svg`
   stroke: ${(props) => props.theme.colors.text};
   stroke-width: 4px;
   stroke-linecap: round;
-  /* margin-right: auto; */
+  transition: ${(props) => props.theme.transition.secondaryTransition};
   .figure-part {
-    /* display: none; */
+    transition: ${(props) => props.theme.transition.secondaryTransition};
   }
 `;

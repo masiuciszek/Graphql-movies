@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { mainTheme } from '../../utils/theme';
 import GlobalStyles from './GlobalStyles';
-import { handleFlex } from '../styles/utils/helpers';
+import Nav from './nav';
 
 interface Props {
   children: React.ReactNode;
@@ -15,8 +15,6 @@ export const Page = styled.div`
 `;
 
 const Main = styled.main`
-  flex-grow: 1 auto;
-  border: 2px solid red;
   margin: 0 auto;
   max-width: ${(props) => props.theme.size.maxWidth};
 `;
@@ -25,6 +23,7 @@ const Layout: React.FC<Props> = ({ children }) => {
   return (
     <ThemeProvider theme={mainTheme}>
       <GlobalStyles />
+      <Nav className='navbar' />
       <Page>
         <Main>{children}</Main>
       </Page>

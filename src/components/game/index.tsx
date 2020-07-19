@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react';
+import { useMessageDispatch } from '../../context/message.context/Message.provider';
 import {
   useWordDispatch,
   useWordState,
@@ -7,6 +8,7 @@ import {
 import useKeyEvent from '../../hooks/useKeyEvent';
 import { randomValue, wordsXs } from '../../utils/helpers';
 import HangMan from '../hangman';
+import Message from '../message';
 import Modal from '../modal';
 import { Button } from '../styles/Buttons';
 import { GameStyles } from '../styles/Wrappers';
@@ -22,6 +24,7 @@ const Game: React.FC<Props> = () => {
   const key = useKeyEvent();
 
   const dispatch = useWordDispatch();
+  const dispatchMessage = useMessageDispatch();
 
   const startGame = (): void => {
     let wordForTheGame = randomValue(wordsXs);
@@ -37,10 +40,11 @@ const Game: React.FC<Props> = () => {
   React.useEffect(() => {
     if (gameWord.includes(key) && !usedLetters.includes(key)) {
       dispatch({ type: 'SET_CORRECT_WORD', payload: key });
-      console.log('is a match with word ' + gameWord + ' letter ' + key);
+      // console.log('is a match with word ' + gameWord + ' letter ' + key);
     } else if (!gameWord.includes(key) && !wrongLetters.includes(key)) {
       dispatch({ type: 'SET_WRONG_WORD', payload: key });
-      console.log('no match');
+      dispatchMessage({ type: 'SET_RESENT_TYPED_LETTER', payload: key });
+      // console.log('no match');
     }
   }, [key]);
 
@@ -55,7 +59,7 @@ const Game: React.FC<Props> = () => {
       <Word />
       {!gameWord && <Button onClick={startGame}>Start Game</Button>}
       {gameWord && <Button onClick={newGame}>New Game</Button>}
-
+      <Message />
       <Modal />
     </GameStyles>
   );

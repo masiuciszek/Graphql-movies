@@ -48,10 +48,11 @@ export default (state: State = initialState, action: Action) => {
         isWinner: false,
         isLoser: false,
       };
+
     case 'SET_LOOSER':
       return {
         ...state,
-        isLoser: !state.isLoser,
+        isLoser: true,
       };
 
     default: {

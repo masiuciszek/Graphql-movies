@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { handleFlex } from '../styles/utils/helpers';
 
 export default createGlobalStyle`
   *::before,
@@ -21,9 +22,11 @@ export default createGlobalStyle`
       margin: 0;
       line-height: 2;
     }
+
     ul{
       list-style:none;
     }
+
     a {
     text-decoration: none;
     color: ${(props) => props.theme.colors.primary};

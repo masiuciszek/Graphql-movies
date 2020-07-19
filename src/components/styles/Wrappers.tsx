@@ -8,7 +8,6 @@ export const ComponentWrapper = styled.div`
 export const GameStyles = styled.div`
   height: 100%;
   position: relative;
-  border: 3px solid whitesmoke;
-  margin: 2rem auto;
+  margin: 0 auto;
   padding: 3rem 1rem;
 `;

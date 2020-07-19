@@ -1,15 +1,25 @@
 import * as React from 'react';
-import { useWordState } from '../../context/word.context/Word.provider';
+import {
+  useWordDispatch,
+  useWordState,
+} from '../../context/word.context/Word.provider';
 import { WordLetter, WrongWordContainer } from './Words.styles';
 
 interface Props {}
 
 const WrongWords: React.FC<Props> = () => {
-  const { gameWord, wrongLetters } = useWordState();
+  const { wrongLetters } = useWordState();
+  const dispatch = useWordDispatch();
 
   let wrongLetters2 = wrongLetters.filter(
     (item, index) => wrongLetters.indexOf(item) === index,
   );
+
+  React.useEffect(() => {
+    if (wrongLetters.length >= 6) {
+      dispatch({ type: 'SET_LOOSER' });
+    }
+  }, [dispatch, wrongLetters]);
 
   return (
     <WrongWordContainer>
