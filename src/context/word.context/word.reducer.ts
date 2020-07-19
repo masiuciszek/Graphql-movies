@@ -25,6 +25,7 @@ export default (state: State = initialState, action: Action) => {
         ...state,
         gameWord: '',
         isWinner: false,
+        isLoser: false,
       };
 
     case 'SET_WINNER':
@@ -38,12 +39,19 @@ export default (state: State = initialState, action: Action) => {
         ...state,
         usedLetters: [],
         isWinner: false,
+        isLoser: false,
       };
     case 'CLEAR_WRONG_WORD_LIST':
       return {
         ...state,
         wrongLetters: [],
         isWinner: false,
+        isLoser: false,
+      };
+    case 'SET_LOOSER':
+      return {
+        ...state,
+        isLoser: !state.isLoser,
       };
 
     default: {

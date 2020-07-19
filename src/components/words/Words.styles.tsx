@@ -1,11 +1,23 @@
 import styled from 'styled-components';
+import { handleFlex } from '../styles/utils/helpers';
 
 export const WordContainer = styled.div`
   padding: 2rem 1rem;
-  width: 40vw;
-  border: 2px solid ${(props) => props.theme.colors.text};
+  width: 100%;
   margin: 12rem auto;
   text-align: center;
+`;
+
+export const WordsStyles = styled.ul`
+  padding: 2rem;
+  ${handleFlex('row', 'space-evenly', 'center')};
+  width: 80%;
+  margin: 1rem auto;
+  li {
+    padding: 1.5rem;
+    border: 2px solid ${(props) => props.theme.colors.text};
+    background: rgba(121, 85, 72, 1);
+  }
 `;
 
 export const WrongWordContainer = styled(WordContainer)`
@@ -24,7 +36,7 @@ export const WordLetter = styled.span`
   display: inline-block;
   position: relative;
   font-size: 1.6rem;
-  color: #333;
+  color: ${(props) => props.theme.colors.text};
   padding: 0.5rem;
   margin: 0.5rem 1.5rem;
   line-height: 3em;

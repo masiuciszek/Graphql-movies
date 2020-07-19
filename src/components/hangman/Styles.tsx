@@ -5,8 +5,11 @@ export const HangmanStyles = styled.svg`
   height: 250;
 
   fill: transparent;
-  stroke: #333;
+  stroke: ${(props) => props.theme.colors.text};
   stroke-width: 4px;
   stroke-linecap: round;
   /* margin-right: auto; */
+  .figure-part {
+    /* display: none; */
+  }
 `;

@@ -4,7 +4,7 @@ import {
   useWordState,
 } from '../../context/word.context/Word.provider';
 import { checkString } from '../../utils/helpers';
-import { WordContainer, WordLetter } from './Words.styles';
+import { WordContainer, WordLetter, WordsStyles } from './Words.styles';
 
 interface Props {}
 
@@ -23,15 +23,19 @@ const Word: React.FC<Props> = () => {
 
   return (
     <WordContainer>
-      {gameWord
-        .split('')
-        .map((letter, i) =>
+      <WordsStyles>
+        {gameWord.split('').map((letter, i) =>
           usedLetters.includes(letter, i) ? (
-            <WordLetter key={i}>{letter}</WordLetter>
+            <li key={i}>
+              <WordLetter>{letter}</WordLetter>
+            </li>
           ) : (
-            <WordLetter key={i}></WordLetter>
+            <li key={i}>
+              <WordLetter key={i}></WordLetter>
+            </li>
           ),
         )}
+      </WordsStyles>
     </WordContainer>
   );
 };

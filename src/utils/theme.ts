@@ -3,12 +3,12 @@ import { DefaultTheme } from 'styled-components';
 export const mainTheme: DefaultTheme = {
   appSize: '10px',
   colors: {
-    primary: 'rgba(142,36,170,1)',
-    text: '#333',
-    mainBg: '#fff',
+    primary: 'rgba(21,101,192,1)',
+    text: '#fff',
+    mainBg: 'rgba(38,50,56,.8)',
     danger: '#E53935',
     warning: '#FFEE58',
-    primaryShadow: 'rgba(142,36,170,.7)',
+    primaryShadow: 'rgba(21,101,192,.7)',
     secondaryShadow: 'rgba(0,0,0,0.5)',
   },
   size: {

@@ -10,14 +10,12 @@ const UsedLetters: React.FC<Props> = () => {
   return (
     <UsedLettersContainer>
       {usedLetters.length > 0 && <h4>Used Letters</h4>}
-      {gameWord
-        .split('')
-        .map(
-          (letter, index) =>
-            usedLetters.includes(letter) && (
-              <WordLetter key={index}>{letter}</WordLetter>
-            ),
-        )}
+
+      {usedLetters.map((letter, i) =>
+        gameWord.split('').includes(letter) ? (
+          <WordLetter key={i}>{letter}</WordLetter>
+        ) : null,
+      )}
     </UsedLettersContainer>
   );
 };

@@ -11,6 +11,7 @@ interface Props {
 export const Page = styled.div`
   background: ${({ theme: { colors } }) => colors.mainBg};
   color: ${({ theme: { colors } }) => colors.text};
+  height: 100vh;
 `;
 
 const Main = styled.main`

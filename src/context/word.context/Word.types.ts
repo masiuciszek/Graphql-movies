@@ -5,6 +5,7 @@ export type State = {
   usedLetters: string[];
   wrongLetters: string[];
   isWinner: boolean;
+  isLoser: boolean;
 };
 
 export const initialState: State = {
@@ -12,6 +13,7 @@ export const initialState: State = {
   usedLetters: [],
   wrongLetters: [],
   isWinner: false,
+  isLoser: false,
 };
 
 // Start the game with setting the first random word to guess
@@ -43,6 +45,9 @@ interface ClearWrongWordList {
 interface SetWinner {
   type: 'SET_WINNER';
 }
+interface SetLooser {
+  type: 'SET_LOOSER';
+}
 
 export type Action =
   | SetUsedWord
@@ -51,4 +56,5 @@ export type Action =
   | ClearGameWord
   | SetWinner
   | ClearUsedWordWrong
-  | ClearWrongWordList;
+  | ClearWrongWordList
+  | SetLooser;
