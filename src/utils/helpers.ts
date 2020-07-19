@@ -15,5 +15,13 @@ export const checkString = (
   gameWord: string,
   selectedWords: string[],
 ): boolean => {
+  if (gameWord) {
+    let prefix = gameWord
+      .split('')
+      .filter((w) => selectedWords.includes(w))
+      .join('');
+
+    return prefix === gameWord;
+  }
   return false;
 };

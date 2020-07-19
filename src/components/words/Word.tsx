@@ -1,5 +1,9 @@
 import * as React from 'react';
-import { useWordState } from '../../context/word.context/Word.provider';
+import {
+  useWordDispatch,
+  useWordState,
+} from '../../context/word.context/Word.provider';
+import { checkString } from '../../utils/helpers';
 import { WordContainer, WordLetter } from './Words.styles';
 
 interface Props {}
@@ -7,9 +11,15 @@ interface Props {}
 const Word: React.FC<Props> = () => {
   const { gameWord, usedLetters } = useWordState();
 
+  const dispatch = useWordDispatch();
+
   React.useEffect(() => {
-    console.log('usedLetters string ', usedLetters.join(''));
-  }, [usedLetters]);
+    let isAMatch = checkString(gameWord, usedLetters);
+    if (isAMatch) {
+      dispatch({ type: 'SET_WINNER' });
+    }
+    // console.log(checkString(gameWord, usedLetters));
+  }, [dispatch, gameWord, usedLetters]);
 
   return (
     <WordContainer>
