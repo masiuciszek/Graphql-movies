@@ -4,6 +4,7 @@ import {
   useWordDispatch,
   useWordState,
 } from '../../context/word.context/Word.provider';
+import useKeyEvent from '../../hooks/useKeyEvent';
 import { randomValue, wordsXs } from '../../utils/helpers';
 import HangMan from '../hangman';
 import Modal from '../modal';
@@ -17,31 +18,24 @@ interface Props {}
 
 const GameTwo: React.FC<Props> = () => {
   const { gameWord, wrongLetters, correctLetters } = useWordState();
+  const key = useKeyEvent();
 
   const dispatch = useWordDispatch();
-
-  const keyBoardListener = () => {
-    let uniqueList = correctLetters.filter(
-      (item, index) => correctLetters.indexOf(item) === index,
-    );
-    window.addEventListener('keydown', (e: KeyboardEvent) => {
-      if (e.keyCode >= 65 && e.keyCode <= 90) {
-        let letter = e.key;
-        if (gameWord.includes(letter)) {
-          if (!correctLetters.includes(letter)) {
-            dispatch({ type: 'SET_CORRECT_WORD', payload: letter });
-          }
-        }
-      }
-    });
-  };
 
   const startGame = (): void => {
     let wordForTheGame = randomValue(wordsXs);
     dispatch({ type: 'SET_GAME_WORD', payload: wordForTheGame });
   };
 
-  keyBoardListener();
+  React.useEffect(() => {
+    if (gameWord.includes(key) && !correctLetters.includes(key)) {
+      dispatch({ type: 'SET_CORRECT_WORD', payload: key });
+      console.log('is a match with word ' + gameWord + ' letter ' + key);
+    } else if (!gameWord.includes(key) && !wrongLetters.includes(key)) {
+      dispatch({ type: 'SET_WRONG_WORD', payload: key });
+      console.log('no match');
+    }
+  }, [key]);
 
   return (
     <GameStyles>
@@ -49,7 +43,7 @@ const GameTwo: React.FC<Props> = () => {
       <UsedLetters />
       <WrongWords />
       <Word />
-      <Button onClick={startGame}>Start GameTwo</Button>
+      <Button onClick={startGame}>Start Game</Button>
       <Modal />
     </GameStyles>
   );
