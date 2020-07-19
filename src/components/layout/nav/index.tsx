@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { handleFlex } from '../../styles/utils/helpers';
+import NavList from './Nav.list';
 
 interface Props {
   className: string;
@@ -9,16 +10,19 @@ interface Props {
 const Nav: React.FC<Props> = ({ className }) => {
   return (
     <nav className={className}>
-      {' '}
-      <h1> Legia CWSKS </h1>{' '}
+      <div className='title'>
+        <h3>Hangman Game</h3>
+      </div>
+      <NavList />
     </nav>
   );
 };
 export default styled(Nav)`
   padding: 2rem 1rem;
-  /* background: ${(props) => props.theme.colors.mainBg}; */
-  background:transparent;
+  background: transparent;
   height: calc(12rem - 2rem);
-
-  ${handleFlex('row', 'center', 'center')};
+  ${handleFlex('row', 'space-evenly', 'center')};
+  .title {
+    flex: 1;
+  }
 `;

@@ -35,15 +35,16 @@ export const mainTheme: DefaultTheme = {
     quickTransition: 'all 200ms ease-in-out',
   },
 };
+
 export const secondaryTheme: DefaultTheme = {
   appSize: '10px',
   colors: {
-    primary: 'rgba(142,36,170,1)',
-    text: '#fff',
-    mainBg: '#333',
+    primary: 'rgba(21,101,192,1)',
+    text: '#333',
+    mainBg: '#fff',
     danger: '#E53935',
     warning: '#FFEE58',
-    primaryShadow: 'rgba(142,36,170,.7)',
+    primaryShadow: 'rgba(21,101,192,.7)',
     secondaryShadow: 'rgba(0,0,0,0.5)',
   },
   size: {
@@ -54,7 +55,7 @@ export const secondaryTheme: DefaultTheme = {
     h5: '22px',
     p: '18px',
     a: '16px',
-    maxWidth: '1100px',
+    maxWidth: '1200px',
   },
   shadow: {
     elevations: [

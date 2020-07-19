@@ -1,6 +1,8 @@
 import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { mainTheme } from '../../utils/theme';
+import { MessageProvider } from '../../context/message.context/Message.provider';
+import { WordProvider } from '../../context/word.context/Word.provider';
+import { mainTheme, secondaryTheme } from '../../utils/theme';
 import GlobalStyles from './GlobalStyles';
 import Nav from './nav';
 
@@ -22,11 +24,15 @@ const Main = styled.main`
 const Layout: React.FC<Props> = ({ children }) => {
   return (
     <ThemeProvider theme={mainTheme}>
-      <GlobalStyles />
-      <Nav className='navbar' />
-      <Page>
-        <Main>{children}</Main>
-      </Page>
+      <WordProvider>
+        <MessageProvider>
+          <GlobalStyles />
+          <Nav className='navbar' />
+          <Page>
+            <Main>{children}</Main>
+          </Page>
+        </MessageProvider>
+      </WordProvider>
     </ThemeProvider>
   );
 };
