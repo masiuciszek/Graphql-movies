@@ -2,14 +2,14 @@ export type Dispatch = (action: Action) => void;
 
 export type State = {
   gameWord: string;
-  correctLetters: string[];
+  usedLetters: string[];
   wrongLetters: string[];
   isWinner: boolean;
 };
 
 export const initialState: State = {
   gameWord: '',
-  correctLetters: [],
+  usedLetters: [],
   wrongLetters: [],
   isWinner: false,
 };
@@ -21,7 +21,7 @@ interface SetGameWord {
 }
 
 // dispatch to correct words list
-interface SetCorrectWord {
+interface SetUsedWord {
   type: 'SET_CORRECT_WORD';
   payload: string;
 }
@@ -34,13 +34,21 @@ interface SetWrongWord {
 interface ClearGameWord {
   type: 'CLEAR_GAME_WORD';
 }
+interface ClearUsedWordWrong {
+  type: 'CLEAR_USED_WORD_LIST';
+}
+interface ClearWrongWordList {
+  type: 'CLEAR_WRONG_WORD_LIST';
+}
 interface SetWinner {
   type: 'SET_WINNER';
 }
 
 export type Action =
-  | SetCorrectWord
+  | SetUsedWord
   | SetWrongWord
   | SetGameWord
   | ClearGameWord
-  | SetWinner;
+  | SetWinner
+  | ClearUsedWordWrong
+  | ClearWrongWordList;

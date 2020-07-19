@@ -11,7 +11,7 @@ export default (state: State = initialState, action: Action) => {
     case 'SET_CORRECT_WORD':
       return {
         ...state,
-        correctLetters: [...state.correctLetters, action.payload],
+        usedLetters: [...state.usedLetters, action.payload],
       };
 
     case 'SET_WRONG_WORD':
@@ -25,10 +25,22 @@ export default (state: State = initialState, action: Action) => {
         ...state,
         gameWord: '',
       };
+
     case 'SET_WINNER':
       return {
         ...state,
         isWinner: !state.isWinner,
+      };
+
+    case 'CLEAR_USED_WORD_LIST':
+      return {
+        ...state,
+        usedLetters: [],
+      };
+    case 'CLEAR_WRONG_WORD_LIST':
+      return {
+        ...state,
+        wrongLetters: [],
       };
 
     default: {

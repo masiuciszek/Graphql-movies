@@ -1,8 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react';
 import {
   useWordDispatch,
   useWordState,
 } from '../../context/word.context/Word.provider';
+import useKeyEvent from '../../hooks/useKeyEvent';
 import { randomValue, wordsXs } from '../../utils/helpers';
 import HangMan from '../hangman';
 import Modal from '../modal';
@@ -15,44 +17,34 @@ import WrongWords from '../words/WrongWords';
 interface Props {}
 
 const Game: React.FC<Props> = () => {
-  const { gameWord, wrongLetters, correctLetters } = useWordState();
+  const { gameWord, wrongLetters, usedLetters } = useWordState();
+
+  const key = useKeyEvent();
 
   const dispatch = useWordDispatch();
-
-  let uniqueList = correctLetters.filter(
-    (item, index) => correctLetters.indexOf(item) === index,
-  );
-
-  const checkWinner = React.useCallback(() => {
-    if (uniqueList.length > 0 && uniqueList.join('') === gameWord) {
-      dispatch({ type: 'SET_WINNER' });
-      console.log('apapap');
-    }
-  }, [uniqueList, gameWord, dispatch]);
-
-  const keyBoardListener = React.useCallback(() => {
-    window.addEventListener('keydown', (e: KeyboardEvent) => {
-      if (e.keyCode >= 65 && e.keyCode <= 90) {
-        let letter = e.key;
-        if (gameWord.includes(letter)) {
-          if (!correctLetters.includes(letter)) {
-            dispatch({ type: 'SET_CORRECT_WORD', payload: letter });
-          }
-        }
-      }
-    });
-    checkWinner();
-  }, [checkWinner, correctLetters, dispatch, gameWord]);
 
   const startGame = (): void => {
     let wordForTheGame = randomValue(wordsXs);
     dispatch({ type: 'SET_GAME_WORD', payload: wordForTheGame });
   };
 
-  React.useEffect(() => {
-    keyBoardListener();
-  }, [checkWinner, correctLetters, keyBoardListener, wrongLetters]);
+  const newGame = (): void => {
+    dispatch({ type: 'CLEAR_GAME_WORD' });
+    dispatch({ type: 'CLEAR_USED_WORD_LIST' });
+    dispatch({ type: 'CLEAR_WRONG_WORD_LIST' });
+  };
 
+  React.useEffect(() => {
+    if (gameWord.includes(key) && !usedLetters.includes(key)) {
+      dispatch({ type: 'SET_CORRECT_WORD', payload: key });
+      console.log('is a match with word ' + gameWord + ' letter ' + key);
+    } else if (!gameWord.includes(key) && !wrongLetters.includes(key)) {
+      dispatch({ type: 'SET_WRONG_WORD', payload: key });
+      console.log('no match');
+    }
+  }, [key]);
+
+  // TODO: DELETE
   console.log(gameWord);
 
   return (
@@ -61,7 +53,9 @@ const Game: React.FC<Props> = () => {
       <UsedLetters />
       <WrongWords />
       <Word />
-      <Button onClick={startGame}>Start Game</Button>
+      {!gameWord && <Button onClick={startGame}>Start Game</Button>}
+      {gameWord && <Button onClick={newGame}>New Game</Button>}
+
       <Modal />
     </GameStyles>
   );

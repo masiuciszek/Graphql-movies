@@ -5,14 +5,18 @@ import { WordContainer, WordLetter } from './Words.styles';
 interface Props {}
 
 const Word: React.FC<Props> = () => {
-  const { gameWord, correctLetters } = useWordState();
+  const { gameWord, usedLetters } = useWordState();
+
+  React.useEffect(() => {
+    console.log('usedLetters string ', usedLetters.join(''));
+  }, [usedLetters]);
 
   return (
     <WordContainer>
       {gameWord
         .split('')
         .map((letter, i) =>
-          correctLetters.includes(letter, i) ? (
+          usedLetters.includes(letter, i) ? (
             <WordLetter key={i}>{letter}</WordLetter>
           ) : (
             <WordLetter key={i}></WordLetter>

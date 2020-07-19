@@ -10,3 +10,10 @@ export const wordsXs: string[] = [
   'lisp',
   'reason',
 ];
+
+export const checkString = (
+  gameWord: string,
+  selectedWords: string[],
+): boolean => {
+  return false;
+};
