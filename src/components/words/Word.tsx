@@ -24,17 +24,13 @@ const Word: React.FC<Props> = () => {
   return (
     <WordContainer>
       <WordsStyles>
-        {gameWord.split('').map((letter, i) =>
-          usedLetters.includes(letter, i) ? (
-            <li key={i}>
-              <WordLetter>{letter}</WordLetter>
-            </li>
-          ) : (
-            <li key={i}>
-              <WordLetter key={i}></WordLetter>
-            </li>
-          ),
-        )}
+        {gameWord.split('').map((letter, i) => (
+          <li key={i}>
+            <WordLetter>
+              {usedLetters.includes(letter) ? letter : ''}
+            </WordLetter>
+          </li>
+        ))}
       </WordsStyles>
     </WordContainer>
   );

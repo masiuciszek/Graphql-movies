@@ -19,7 +19,7 @@ const Message: React.FC<Props> = () => {
       dispatch({ type: 'TOGGLE_USED_LETTER' });
       setTimeout(() => {
         dispatch({ type: 'TOGGLE_USED_LETTER' });
-      }, 3000);
+      }, 2300);
     }
   }, [dispatch, resentTypedKey, wrongLetters]);
 

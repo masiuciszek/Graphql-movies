@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { handleFlex } from '../styles/utils/helpers';
-
+import bg from '../../bg.png';
 export const WordContainer = styled.div`
   padding: 2rem 1rem;
   width: 100%;
@@ -16,7 +16,7 @@ export const WordsStyles = styled.ul`
   li {
     padding: 1.5rem;
     border: 2px solid ${(props) => props.theme.colors.text};
-    background: rgba(121, 85, 72, 1);
+    background-image: url(${bg});
   }
 `;
 

@@ -38,18 +38,26 @@ const Game: React.FC<Props> = () => {
   };
 
   React.useEffect(() => {
-    if (gameWord.includes(key) && !usedLetters.includes(key)) {
-      dispatch({ type: 'SET_CORRECT_WORD', payload: key });
-      // console.log('is a match with word ' + gameWord + ' letter ' + key);
-    } else if (!gameWord.includes(key) && !wrongLetters.includes(key)) {
-      dispatch({ type: 'SET_WRONG_WORD', payload: key });
-      dispatchMessage({ type: 'SET_RESENT_TYPED_LETTER', payload: key });
-      // console.log('no match');
+    // if (gameWord.includes(key) && !usedLetters.includes(key)) {
+    //   dispatch({ type: 'SET_CORRECT_WORD', payload: key });
+    //   // console.log('is a match with word ' + gameWord + ' letter ' + key);
+    // } else if (!gameWord.includes(key) && !wrongLetters.includes(key)) {
+    //   dispatch({ type: 'SET_WRONG_WORD', payload: key });
+    //   dispatchMessage({ type: 'SET_RESENT_TYPED_LETTER', payload: key });
+    //   // console.log('no match');
+    // }
+
+    if (gameWord.includes(key)) {
+      if (!usedLetters.includes(key)) {
+        dispatch({ type: 'SET_CORRECT_WORD', payload: key });
+      }
+    } else {
+      if (!wrongLetters.includes(key)) {
+        dispatch({ type: 'SET_WRONG_WORD', payload: key });
+        dispatchMessage({ type: 'SET_RESENT_TYPED_LETTER', payload: key });
+      }
     }
   }, [key]);
-
-  // TODO: DELETE
-  console.log(gameWord);
 
   return (
     <GameStyles>
