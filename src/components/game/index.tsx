@@ -57,8 +57,16 @@ const Game: React.FC<Props> = () => {
       <UsedLetters />
       <WrongWords />
       <Word />
-      {!gameWord && <Button onClick={startGame}>Start Game</Button>}
-      {gameWord && <Button onClick={newGame}>New Game</Button>}
+      {!gameWord && (
+        <Button data-testid='startgame' onClick={startGame}>
+          Start Game
+        </Button>
+      )}
+      {gameWord && (
+        <Button data-testid='newgame' onClick={newGame}>
+          New Game
+        </Button>
+      )}
       <Message />
       <Modal />
     </GameStyles>
