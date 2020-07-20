@@ -19,37 +19,53 @@ const Modal: React.FC<Props> = () => {
     x: isLoser ? 0 : 100,
   });
 
+  React.useEffect(() => {
+    return () => {};
+  }, [isLoser, isWinner]);
+
   return (
-    <ModalStyles
-      style={{
-        transform: isWinner
-          ? y.interpolate((y) => `translate3d(0,${y * -1}%,0)`)
-          : x.interpolate((x) => `translate3d(0,${x * -1}%,0)`),
-      }}>
-      <ModalBody>
-        {isWinner && (
-          <>
+    <>
+      {isWinner && (
+        <ModalStyles
+          style={{
+            transform: y.interpolate((y) => `translate3d(0,${y * -1}%,0)`),
+          }}>
+          <ModalBody>
             <h1> Winner </h1>
             <h3>You win the game</h3>
-          </>
-        )}
 
-        {isLoser && (
-          <>
-            <h1> Looser </h1>
-            <h3>You loose the game</h3>
-          </>
-        )}
-        <Button
-          onClick={() => {
-            dispatch({ type: 'CLEAR_GAME_WORD' });
-            dispatch({ type: 'CLEAR_USED_WORD_LIST' });
-            dispatch({ type: 'CLEAR_WRONG_WORD_LIST' });
+            <Button
+              onClick={() => {
+                dispatch({ type: 'CLEAR_GAME_WORD' });
+                dispatch({ type: 'CLEAR_USED_WORD_LIST' });
+                dispatch({ type: 'CLEAR_WRONG_WORD_LIST' });
+              }}>
+              New game?
+            </Button>
+          </ModalBody>
+        </ModalStyles>
+      )}
+      {isLoser && (
+        <ModalStyles
+          style={{
+            transform: x.interpolate((x) => `translate3d(0,${x * -1}%,0)`),
           }}>
-          New game?
-        </Button>
-      </ModalBody>
-    </ModalStyles>
+          <ModalBody>
+            <h1> Looser </h1>
+            <h3>You lose the game</h3>
+
+            <Button
+              onClick={() => {
+                dispatch({ type: 'CLEAR_GAME_WORD' });
+                dispatch({ type: 'CLEAR_USED_WORD_LIST' });
+                dispatch({ type: 'CLEAR_WRONG_WORD_LIST' });
+              }}>
+              New game?
+            </Button>
+          </ModalBody>
+        </ModalStyles>
+      )}
+    </>
   );
 };
 export default Modal;

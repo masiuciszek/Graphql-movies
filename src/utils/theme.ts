@@ -39,12 +39,12 @@ export const mainTheme: DefaultTheme = {
 export const secondaryTheme: DefaultTheme = {
   appSize: '10px',
   colors: {
-    primary: 'rgba(21,101,192,1)',
+    primary: 'rgba(220,231,117,1)',
     text: '#333',
     mainBg: '#fff',
     danger: '#E53935',
     warning: '#FFEE58',
-    primaryShadow: 'rgba(21,101,192,.7)',
+    primaryShadow: 'rgba(220,231,117,.7))',
     secondaryShadow: 'rgba(0,0,0,0.5)',
   },
   size: {

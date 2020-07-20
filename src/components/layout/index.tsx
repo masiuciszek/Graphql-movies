@@ -22,12 +22,15 @@ const Main = styled.main`
 `;
 
 const Layout: React.FC<Props> = ({ children }) => {
+  const stored = localStorage.getItem('isDark');
+  const [isDark, setIsDark] = React.useState(stored === 'true' ? true : false);
+
   return (
-    <ThemeProvider theme={mainTheme}>
+    <ThemeProvider theme={isDark ? secondaryTheme : mainTheme}>
       <WordProvider>
         <MessageProvider>
           <GlobalStyles />
-          <Nav className='navbar' />
+          <Nav className='navbar' isDark={isDark} setIsDark={setIsDark} />
           <Page>
             <Main>{children}</Main>
           </Page>
